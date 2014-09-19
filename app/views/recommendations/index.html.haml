@@ -1,0 +1,9 @@
+%table
+  - @recommendations.each do |r|
+    %tr
+      %td
+        %strong= r.album.artist
+        %br
+        = r.album.title
+      %td= r.user.screen_name
+      %td= r.recipient.screen_name
