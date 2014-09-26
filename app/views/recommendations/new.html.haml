@@ -1,15 +1,15 @@
 %h1 Nieuwe aanbeveling
 
 = form_for @recommendation do |f|
-  %p
-    = f.fields_for :album do |a|
-      %p
-        = a.label :artist
-        = a.text_field :artist
-      %p
-        = a.label :title
-        = a.text_field :title
-  %p
-    = f.label :recipient_id
-    = f.select :recipient_id, options_from_collection_for_select(Recipient.all, 'id', 'screen_name')
+  = f.fields_for :album do |a|
+    %p
+      = a.label :artist
+      = a.text_field :artist
+    %p
+      = a.label :title
+      = a.text_field :title
+  = f.fields_for :recipient do |r|
+    %p
+      = r.label :email
+      = r.text_field :email
   %p= f.submit

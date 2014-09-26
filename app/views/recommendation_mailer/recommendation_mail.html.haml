@@ -1,0 +1,11 @@
+%h1 Recommendation!
+
+%p
+  = @recommendation.user.screen_name
+  recommends an album to you!
+%p
+  Artist:
+  = @recommendation.album.artist
+%p
+  Album:
+  = @recommendation.album.title

@@ -6,13 +6,19 @@ class RecommendationsController < ApplicationController
   def new
     @recommendation = Recommendation.new
     @recommendation.album = Album.new
+    @recommendation.recipient = Recipient.new
   end
 
   def create
     @recommendation = Recommendation.new(recommandation_params)
     @recommendation.user = current_user
-    @recommendation.save
-    redirect_to root_path
+
+    if @recommendation.save
+      RecommendationMailer.recommendation_mail(@recommendation).deliver
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
